@@ -56,3 +56,6 @@ const tree = {
 
 CreateHtml(document.body, tree)
 ```
+
+![image](https://user-images.githubusercontent.com/62665817/177183801-02d01caf-88f1-40f9-931d-c5dce6ff4c64.png)
+
