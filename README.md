@@ -7,8 +7,10 @@ Package is only 100 or less lines.
 
 
 ```javascript
-# USE node(TagName, attr) to create tag element
-# USE CreateHtml(parent, tree) to build html tree - Example treee input {[node("p")]: "This is inside a P element!"}
+// USE node(TagName, attr) to create tag element
+// USE CreateHtml(parent, tree) to build html tree - Example treee input 
+
+CreateHtml(document.body, {[node("p")]: "This is inside a P element!"})
 ```
 
 ```javascript
