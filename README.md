@@ -1,4 +1,4 @@
-##Use javascript objects to write declarative html and css code.
+## Use javascript objects to write declarative html and css code.
 
 BulletJS is a super fast and light way to create html in pure JS.
 Package is only 100 or less lines.
