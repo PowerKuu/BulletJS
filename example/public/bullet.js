@@ -82,6 +82,7 @@ export function node(name, attr = {}) {
 
     const element = MapArguments(document.createElement(name), attr)
     element.toString = () => {return btoa(element.outerHTML)}
+    element.key = element.toString()
     
     ElementCache[element.toString()] = element
 
