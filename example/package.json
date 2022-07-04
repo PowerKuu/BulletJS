@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "express": "^4.18.1",
+    "path": "^0.12.7",
+    "typescript": "^4.7.4"
+  },
+  "name": "feather-example",
+  "version": "1.0.0",
+  "main": "express-server.js",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^18.0.0"
+  }
+}
