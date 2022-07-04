@@ -1,3 +1,5 @@
+# BulletJS
+
 ## Use javascript objects to write declarative html and css code.
 
 BulletJS is a super fast and light way to create html in pure JS.
@@ -56,6 +58,8 @@ const tree = {
 
 CreateHtml(document.body, tree)
 ```
+
+#### Output
 
 ![image](https://user-images.githubusercontent.com/62665817/177183801-02d01caf-88f1-40f9-931d-c5dce6ff4c64.png)
 
