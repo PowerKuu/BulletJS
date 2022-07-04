@@ -8,6 +8,9 @@ Package is only 100 or less lines.
 ```javascript
 import {node, CreateHtml} from "./bullet.js"
 
+# USE node(TagName, attr) to create tag element
+# USE CreateHtml(parent, tree) to build html tree - Example treee input {[node("p")]: "This is inside a P element!"}
+
 function ExampleComponent(color){
     const comp = node("div", {
         id:"test",
