@@ -5,11 +5,14 @@ Package is only 100 or less lines.
 
 ## Usage
 
-```javascript
-import {node, CreateHtml} from "./bullet.js"
 
+```javascript
 # USE node(TagName, attr) to create tag element
 # USE CreateHtml(parent, tree) to build html tree - Example treee input {[node("p")]: "This is inside a P element!"}
+```
+
+```javascript
+import {node, CreateHtml} from "./bullet.js"
 
 function ExampleComponent(color){
     const comp = node("div", {
