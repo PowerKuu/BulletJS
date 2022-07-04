@@ -24,6 +24,7 @@ CreateHtml(document.body, {[node("p")]: "This is inside a P element!"})
 import {node, CreateHtml} from "./bullet.js"
 
 function ExampleComponent(color){
+    // Classes and styles accept custom inputs
     const comp = node("div", {
         id:"test",
         class: [
@@ -35,7 +36,8 @@ function ExampleComponent(color){
             "font-size": "20px"
         }
     })
-
+    
+    // A node element is a normal html element
     comp.addEventListener("click", () => {
         alert("click")
     })
