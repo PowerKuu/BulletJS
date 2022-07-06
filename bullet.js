@@ -1,14 +1,3 @@
-//!
-/*
-
-
-    THIS IS AN EXAMPLE VERSION OF BULLET JS
-    DONT USE THIS IN YOUR PROJECT
-
-
-*/
-//!
-
 const CustomArgumentMap = {
     style: (value) => {
         if (value instanceof Object){
