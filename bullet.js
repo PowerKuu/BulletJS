@@ -29,7 +29,7 @@ const ElementCache = {}
 * @param tree {object} Tree
 * @returns {Node} Returns a node
 */
-export function CreateHtml(parrent, tree){
+export function build(parrent, tree){
     function drill(parrent, tree){
         for (var key in tree){
             const outer = ElementCache[key]
@@ -75,4 +75,16 @@ export function node(name, attr = {}) {
     ElementCache[element.toString()] = element
 
     return element
+}
+
+
+/**
+* @returns {Object} Returns a tree
+*/
+export function router(routes){
+    for (var [path, handler] of Object.entries(routes)){
+        if (path == window.location.pathname){
+            return handler
+        }
+    }
 }
