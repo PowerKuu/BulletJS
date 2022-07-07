@@ -34,13 +34,12 @@ export function build(parrent, tree){
         for (var key in tree){
             const outer = ElementCache[key]
             const inner = tree[key]
-
             parrent.append(outer)
 
             if (inner instanceof Array) {
                 for (var element of inner){
-                    console.log(element)
-                    outer.innerHTML += element
+                    if (element.nodeType === undefined) return
+                    outer.append(element)
                 }
                 continue
             }
@@ -52,7 +51,7 @@ export function build(parrent, tree){
             outer.innerHTML = inner
         }
     }
-    console.log(parrent)
+
     drill(parrent, tree)
     return parrent
 }
