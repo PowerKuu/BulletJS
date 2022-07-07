@@ -1,11 +1,9 @@
 {
-  "name": "bullet",
-  "version": "1.0.0",
+  "name": "@powerkuu/bullet",
+  "version": "1.0.1",
   "description": "",
   "main": "bullet.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "scripts": {},
+  "author": "https://github.com/PowerKuu",
   "license": "ISC"
 }
