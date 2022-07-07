@@ -1,7 +1,8 @@
 # BulletJS
 
-Download in releases or use:
 #### npm install @powerkuu/bullet
+Or download from releases.
+
 
 ## Use javascript objects to write declarative html and css code.
 
