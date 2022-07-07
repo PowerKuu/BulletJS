@@ -34,10 +34,10 @@ export function build(parrent, tree){
         for (var key in tree){
             const outer = ElementCache[key]
             const inner = tree[key]
-            parrent.append(outer)
+            parrent.appendChild(outer)
 
             if (inner.nodeType !== undefined){
-                outer.innerHTML = inner.innerHTML
+                outer.appendChild(inner)
                 continue
             }
             if (inner instanceof Array) {
