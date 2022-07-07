@@ -36,10 +36,14 @@ export function build(parrent, tree){
             const inner = tree[key]
             parrent.append(outer)
 
+            if (inner.nodeType !== undefined){
+                outer.innerHTML = inner.innerHTML
+                continue
+            }
             if (inner instanceof Array) {
                 for (var element of inner){
-                    if (element.nodeType === undefined) return
-                    outer.append(element)
+                    if (!(element instanceof Object)) return
+                    drill(outer, element)
                 }
                 continue
             }
