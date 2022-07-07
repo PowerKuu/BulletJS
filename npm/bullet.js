@@ -37,11 +37,19 @@ export function build(parrent, tree){
 
             parrent.append(outer)
 
+            if (inner instanceof Array) {
+                for (var element of inner){
+                    console.log(element)
+                    outer.innerHTML += element
+                }
+                continue
+            }
             if (inner instanceof Object){
                 drill(outer, inner)
-            } else {
-                outer.innerHTML = inner
+                continue
             }
+            
+            outer.innerHTML = inner
         }
     }
     console.log(parrent)
