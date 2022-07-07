@@ -10,12 +10,12 @@ Package is only 100 or less lines.
 
 ```javascript
 // Import 2 light functions !Client side
-import {node, CreateHtml} from "./bullet.js"
+import {node, build} from "./bullet.js"
 
 // USE node(TagName, attr) to create tag element
-// USE CreateHtml(parent, tree) to build html tree
+// USE build(parent, tree) to build html tree
 
-CreateHtml(document.body, {[node("p")]: "This is inside a P element!"})
+build(document.body, {[node("p")]: "This is inside a P element!"})
 ```
 
 
@@ -23,7 +23,7 @@ CreateHtml(document.body, {[node("p")]: "This is inside a P element!"})
 
 
 ```javascript
-import {node, CreateHtml} from "./bullet.js"
+import {node, build} from "./bullet.js"
 
 function ExampleComponent(color){
     // Classes and styles accept custom inputs
@@ -56,7 +56,7 @@ const tree = {
 }
 
 
-CreateHtml(document.body, tree)
+build(document.body, tree)
 ```
 
 #### Output
