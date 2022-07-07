@@ -32,17 +32,20 @@ const ElementCache = {}
 export function build(parrent, tree){
     function drill(parrent, tree){
         for (var key in tree){
-            const outer = ElementCache[key]
-            const inner = tree[key]
-            parrent.appendChild(outer)
+            const OuterRaw = ElementCache[key]
 
+            const outer = OuterRaw.clone ? OuterRaw.cloneNode(true) : OuterRaw
+            const inner = tree[key]
+
+            parrent.appendChild(outer)
+ 
             if (inner.nodeType !== undefined){
                 outer.appendChild(inner)
                 continue
             }
             if (inner instanceof Array) {
                 for (var element of inner){
-                    if (!(element instanceof Object)) return
+                    if (!(element instanceof Object)) continue
                     drill(outer, element)
                 }
                 continue
@@ -54,6 +57,8 @@ export function build(parrent, tree){
             
             outer.innerHTML = inner
         }
+
+        return parrent
     }
 
     drill(parrent, tree)
@@ -65,7 +70,7 @@ export function build(parrent, tree){
 * @param attr {object} Atributes
 * @returns {Node} Returns a node
 */
-export function node(name, attr = {}) {
+export function node(name, attr = {}, clone=false) {
     function MapArguments(element, attr = {}){
         if (attr == {}) return element
 
@@ -81,7 +86,10 @@ export function node(name, attr = {}) {
     }
 
     const element = MapArguments(document.createElement(name), attr)
-    element.toString = () => {return btoa(element.outerHTML)}
+    const key = URL.createObjectURL(new Blob([])).substr(-36)
+    
+    element.clone = clone
+    element.toString = () => {return key}
     
     ElementCache[element.toString()] = element
 
