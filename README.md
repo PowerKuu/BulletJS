@@ -7,6 +7,15 @@ npm install @powerkuu/bullet
 ```
 Or download from releases.
 
+To create with vite and sass run:
+```
+npm create vite@latest <name> --template vanilla
+cd <name>
+npm install
+npm run dev
+npm install @powerkuu/bullet
+npm add -D sass
+```
 
 ## Use javascript objects to write declarative html and css code.
 
