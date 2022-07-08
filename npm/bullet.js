@@ -1,3 +1,87 @@
+/**
+* @param parrent {Node} Parrent node
+* @param tree {object} Tree
+* @returns {Node} Returns a node
+*/
+export function build(parrent, tree){
+    function ApplyTree(parrent, tree){
+        for (var key in tree){
+            if (!key.startsWith("UUID") && (tree[key] instanceof Object || tree[key] instanceof Array)){
+                ApplyTree(parrent, tree[key])
+                continue
+            }
+
+            const InnerContent = tree[key]
+            const OuterElement = ElementCache[key].clone ? ElementCache[key].cloneNode(true) : ElementCache[key]
+
+            parrent.appendChild(OuterElement)
+ 
+            if (InnerContent.nodeType !== undefined){
+                OuterElement.appendChild(InnerContent)
+            } 
+            else if (InnerContent instanceof Array) {
+                for (var element of InnerContent){
+                    if (!(element instanceof Object)) continue
+                    ApplyTree(OuterElement, element)
+                }
+            } 
+            else if (InnerContent instanceof Object){
+                ApplyTree(OuterElement, InnerContent)
+            } 
+            else OuterElement.innerHTML = InnerContent
+        }
+
+        return parrent
+    }
+
+    ApplyTree(parrent, tree)
+    return parrent
+}
+
+/**
+* @param name {String} Tag name
+* @param attributes {Object} Atributes
+* @param clone {Boolean} Does the object get coloned. U can not clone a node with properties
+* @returns {Node} Returns a node
+*/
+export function node(name, attributes = {}, clone = false) {
+    function ApplyAattributes(element, attributes = {}){
+        if (attributes == {}) return element
+        for (var key in attributes){
+            const custom = CustomArgumentMap[key]
+            const value = custom ? custom(attributes[key], element) : attributes[key]
+            if (!value) continue
+
+            element.setAttribute(key, value)
+        }
+        
+        return element
+    }
+
+    const element = ApplyAattributes(document.createElement(name), attributes)
+    const key = uuid()
+    
+    element.clone = clone
+    element.toString = () => {return key}
+    
+    ElementCache[element.toString()] = element
+    return element
+}
+
+/**
+* @returns {Object} Returns a tree
+* @param routes {Object} Route map
+*/
+export function router(routes){
+    for (var [path, handler] of Object.entries(routes)){
+        if (path == window.location.pathname) return handler
+    }
+}
+
+//? Short version for the (node) function
+export const N = node
+//?
+
 //? Simple utility functions
 const uuid = () => "UUID" + URL.createObjectURL(new Blob([])).substr(-36)
 const FunctionAttribute = (attr) => (value, element) => {
@@ -10,99 +94,7 @@ const FunctionAttribute = (attr) => (value, element) => {
 const ElementCache = {}
 //?
 
-
-
-/**
-* @param parrent {Node} Parrent node
-* @param tree {object} Tree
-* @returns {Node} Returns a node
-*/
-export function build(parrent, tree){
-    function drill(parrent, tree){
-        for (var key in tree){
-            const inner = tree[key]
-
-            if (!key.startsWith("UUID") && (inner instanceof Object || inner instanceof Array)){
-                drill(parrent, inner)
-                continue
-            }
-
-            const OuterRaw = ElementCache[key]
-            const outer = OuterRaw.clone ? OuterRaw.cloneNode(true) : OuterRaw
-
-            parrent.appendChild(outer)
- 
-            if (inner.nodeType !== undefined){
-                outer.appendChild(inner)
-                continue
-            }
-            if (inner instanceof Array) {
-                for (var element of inner){
-                    if (!(element instanceof Object)) continue
-                    drill(outer, element)
-                }
-                continue
-            }
-            if (inner instanceof Object){
-                drill(outer, inner)
-                continue
-            }
-            
-            outer.innerHTML = inner
-        }
-
-        return parrent
-    }
-
-    drill(parrent, tree)
-    return parrent
-}
-
-/**
-* @param name {string} Tag name
-* @param attr {object} Atributes
-* @returns {Node} Returns a node
-*/
-export function node(name, attr = {}, clone=false) {
-    function MapArguments(element, attr = {}){
-        if (attr == {}) return element
-
-        for (var key in attr){
-            const custom = CustomArgumentMap[key]
-            const value = custom ? custom(attr[key], element) : attr[key]
-            if (!value) continue
-
-            element.setAttribute(key, value)
-        }
-        
-        return element
-    }
-
-    const element = MapArguments(document.createElement(name), attr)
-    const key = uuid()
-    
-    element.clone = clone
-    element.toString = () => {return key}
-    
-    ElementCache[element.toString()] = element
-
-    return element
-}
-
-/**
-* @returns {Object} Returns a tree
-*/
-export function router(routes){
-    for (var [path, handler] of Object.entries(routes)){
-        if (path == window.location.pathname){
-            return handler
-        }
-    }
-}
-
-
-
-//? Custom argument map (ingnore)
+//? Custom argument map
 const CustomArgumentMap = {
     style(value) {
         if (value instanceof Object){
