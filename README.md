@@ -2,7 +2,7 @@
 
 #### Its recommended to use (webpack, vite, etc..) with bullet
 ### npm install @powerkuu/bullet
-###Or download from releases.
+### Or download from releases.
 
 
 ## Use javascript objects to write declarative html and css code.
