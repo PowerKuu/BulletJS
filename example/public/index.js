@@ -1,4 +1,4 @@
-import {node, CreateHtml} from "./bullet.js"
+import {node, build} from "./bullet.js"
 
 function ExampleComponent(color){
     const comp = node("div", {
@@ -29,4 +29,4 @@ const tree = {
 }
 
 
-CreateHtml(document.body, tree)
+build(document.body, tree)
