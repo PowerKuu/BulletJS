@@ -1,5 +1,5 @@
 //? Simple utility functions
-const uuid = () => URL.createObjectURL(new Blob([])).substr(-36)
+const uuid = () => "UUID" + URL.createObjectURL(new Blob([])).substr(-36)
 const FunctionAttribute = (attr) => (value, element) => {
     if (value instanceof Function) element[attr] = value  
     else return value
@@ -10,6 +10,8 @@ const FunctionAttribute = (attr) => (value, element) => {
 const ElementCache = {}
 //?
 
+
+
 /**
 * @param parrent {Node} Parrent node
 * @param tree {object} Tree
@@ -18,10 +20,15 @@ const ElementCache = {}
 export function build(parrent, tree){
     function drill(parrent, tree){
         for (var key in tree){
-            const OuterRaw = ElementCache[key]
-
-            const outer = OuterRaw.clone ? OuterRaw.cloneNode(true) : OuterRaw
             const inner = tree[key]
+
+            if (!key.startsWith("UUID") && (inner instanceof Object || inner instanceof Array)){
+                drill(parrent, inner)
+                continue
+            }
+
+            const OuterRaw = ElementCache[key]
+            const outer = OuterRaw.clone ? OuterRaw.cloneNode(true) : OuterRaw
 
             parrent.appendChild(outer)
  
@@ -92,6 +99,8 @@ export function router(routes){
         }
     }
 }
+
+
 
 //? Custom argument map (ingnore)
 const CustomArgumentMap = {
