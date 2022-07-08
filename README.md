@@ -2,7 +2,7 @@
 
 #### Its recommended to use (webpack, vite, etc..) with bullet
 To install run:
-```bash
+```sh
 npm install @powerkuu/bullet
 ```
 Or download from releases.
