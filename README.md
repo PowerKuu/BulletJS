@@ -1,6 +1,6 @@
 # BulletJS
 
-#### Its recommended to use (webpack, vite, etc..) with bullet
+#### Its recommended to use (webpack, vite, etc..) with bullet.
 To install run:
 ```
 npm install @powerkuu/bullet
