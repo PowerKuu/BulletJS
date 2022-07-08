@@ -1,10 +1,9 @@
 //!
 /*
 
-
-    THIS IS AN EXAMPLE VERSION OF BULLET JS
-    DONT USE THIS IN YOUR PROJECT
-
+    !THIS IS AN EXAMPLE VERSION OF BULLET
+    !DONT USE THIS IN YOUR PROJECT
+    Download the latest version from: (https://github.com/PowerKuu/BulletJS)
 
 */
 //!
@@ -40,7 +39,7 @@ const ElementCache = {}
 * @param tree {object} Tree
 * @returns {Node} Returns a node
 */
-export function CreateHtml(parrent, tree){
+export function build(parrent, tree){
     function drill(parrent, tree){
         for (var key in tree){
             const outer = ElementCache[key]
@@ -55,7 +54,7 @@ export function CreateHtml(parrent, tree){
             }
         }
     }
-    console.log(parrent)
+
     drill(parrent, tree)
     return parrent
 }
