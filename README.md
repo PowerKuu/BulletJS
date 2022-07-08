@@ -18,7 +18,7 @@ Package is only 200 or less lines.
 
 ```javascript
 // Import 2 light functions !Client side
-import {node, build} from "bullet"
+import {node, build} from "@powerkuu/bullet"
 
 // USE node(TagName, attr) to create tag element
 // USE build(parent, tree) to build html tree
@@ -31,7 +31,7 @@ build(document.body, {[node("p")]: "This is inside a P element!"})
 
 
 ```javascript
-import {node, build} from "bullet"
+import {node, build} from "@powerkuu/bullet"
 
 function ExampleComponent(color){
     // Classes and styles accept custom inputs
