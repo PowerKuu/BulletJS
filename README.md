@@ -1,20 +1,24 @@
 # BulletJS
 
-#### npm install @powerkuu/bullet
+#### Its recommended to use (webpack, vite, etc..) with bullet.
+To install run:
+```
+npm install @powerkuu/bullet
+```
 Or download from releases.
 
 
 ## Use javascript objects to write declarative html and css code.
 
 BulletJS is a super fast and light way to create html in pure JS.
-Package is only 100 or less lines.
+Package is only 200 or less lines.
 
 ## Usage
 
 
 ```javascript
 // Import 2 light functions !Client side
-import {node, build} from "bullet"
+import {node, build} from "@powerkuu/bullet"
 
 // USE node(TagName, attr) to create tag element
 // USE build(parent, tree) to build html tree
@@ -27,7 +31,7 @@ build(document.body, {[node("p")]: "This is inside a P element!"})
 
 
 ```javascript
-import {node, build} from "bullet"
+import {node, build} from "@powerkuu/bullet"
 
 function ExampleComponent(color){
     // Classes and styles accept custom inputs
